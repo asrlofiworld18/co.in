@@ -3,187 +3,229 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Asr Lofi World | Music & Grooves</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>ASR LOFI WORLD 18 | Ankit Singh</title>
+    <script src="https://apis.google.com/js/platform.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
     <style>
+        :root {
+            --primary: #bb86fc;
+            --secondary: #03dac6;
+            --bg: #0b0b0b;
+            --card-bg: #1a1a1a;
+            --text: #ffffff;
+            --accent: #ff79c6;
+            --whatsapp: #25D366;
+            --chat: #0084ff;
+        }
+
+        .light-mode {
+            --bg: #fdfdfd;
+            --card-bg: #ffffff;
+            --text: #121212;
+            --primary: #6200ee;
+        }
+
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            /* Background using your logo with a dark teal overlay */
-            background: linear-gradient(rgba(0, 100, 110, 0.85), rgba(0, 50, 60, 0.9)), 
-                        url('asr-logo.JPG') no-repeat center center fixed;
-            background-size: cover;
-            color: #ffffff;
-            line-height: 1.6;
+            background-color: var(--bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.8;
+            transition: 0.4s;
         }
 
-        .main-header {
+        nav {
+            position: fixed;
+            width: 100%;
+            padding: 15px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(11, 11, 11, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            box-sizing: border-box;
+        }
+
+        .nav-brand { display: flex; align-items: center; text-decoration: none; }
+        .logo-text { font-family: 'Poppins'; color: var(--primary); font-size: 1.4rem; letter-spacing: 1px; }
+        .channel-logo-top { width: 55px; height: 55px; border-radius: 50%; border: 2px solid var(--primary); object-fit: cover; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 180px 20px 100px; }
+
+        section { margin-bottom: 180px; } 
+        h2 { font-family: 'Poppins'; font-size: 2.5rem; margin-bottom: 50px; border-left: 6px solid var(--primary); padding-left: 25px; }
+
+        .about-card {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 60px;
+            background: var(--card-bg);
+            padding: 60px;
+            border-radius: 40px;
+            align-items: center;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+        .profile-img { width: 100%; border-radius: 30px; border: 3px solid var(--primary); object-fit: cover; }
+
+        /* Subscribe Section After About */
+        .subscribe-banner {
             text-align: center;
-            padding: 60px 20px;
-        }
-
-        .logo-main {
-            width: 160px;
-            border-radius: 20px;
-            border: 4px solid #fff;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            margin-bottom: 15px;
-        }
-
-        .container {
-            max-width: 850px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        .card-section {
-            background: rgba(255, 255, 255, 0.1);
             padding: 40px;
-            border-radius: 15px;
-            backdrop-filter: blur(8px);
-            margin-bottom: 40px;
+            background: rgba(187, 134, 252, 0.1);
+            border-radius: 20px;
+            margin-top: 40px;
+            border: 1px solid var(--primary);
+        }
+
+        .countdown-banner {
+            background: linear-gradient(135deg, var(--primary), #6200ee);
+            color: #000;
+            padding: 80px 40px;
+            border-radius: 40px;
             text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 80px;
         }
+        .timer { font-size: 4rem; font-weight: bold; font-family: 'Poppins'; margin: 25px 0; }
 
-        /* Release Schedule Styling */
-        .schedule-box {
-            background: rgba(0, 229, 255, 0.15);
-            border: 2px dashed #00e5ff;
-            padding: 20px;
-            border-radius: 12px;
-            margin-top: 25px;
-        }
+        .track-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+        .track-card { background: var(--card-bg); padding: 40px; border-radius: 30px; border: 1px solid rgba(255,255,255,0.05); text-align: center; }
 
-        .subscribe-btn {
-            display: inline-block;
-            background-color: #ffffff;
-            color: #00a9b5;
-            padding: 20px 45px;
-            text-decoration: none;
-            border-radius: 50px;
-            font-size: 1.4em;
-            transition: all 0.3s ease;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            margin-top: 20px;
-        }
+        .video-wrapper { width: 100%; aspect-ratio: 16/9; border-radius: 40px; overflow: hidden; box-shadow: 0 40px 80px rgba(0,0,0,0.6); margin-top: 20px; }
+        .yt-thumb-featured { width: 100%; border-radius: 20px; margin-bottom: 20px; border: 2px solid var(--primary); }
 
-        .subscribe-btn:hover {
-            transform: scale(1.05);
-            background-color: #e0fbfc;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-        }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
+        input, textarea { width: 100%; background: #222; border: 1px solid #333; padding: 18px; border-radius: 15px; color: white; margin-bottom: 20px; outline: none; }
+        .btn { background: var(--primary); color: black; padding: 18px 40px; border: none; border-radius: 15px; font-weight: bold; cursor: pointer; width: 100%; transition: 0.3s; }
 
-        .video-container {
-            position: relative;
-            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-            height: 0;
-            overflow: hidden;
-            margin-bottom: 40px;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-            background: #000; /* Placeholder color while loading */
-        }
+        .float-wrap { position: fixed; bottom: 40px; right: 40px; display: flex; flex-direction: column; gap: 20px; z-index: 1001; }
+        .float-btn { width: 65px; height: 65px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 15px 30px rgba(0,0,0,0.5); border: none; cursor: pointer; }
+        .whatsapp { background: var(--whatsapp); }
 
-        .video-container iframe {
-            position: absolute;
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
-            border: 0;
-        }
+        footer { text-align: center; padding: 100px 20px; background: #050505; color: #777; border-top: 1px solid #1a1a1a; }
+        .copyright-line { border-top: 1px solid #222; margin-top: 40px; padding-top: 40px; }
 
-        .social-links {
-            margin-top: 25px;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 2.5em;
-            margin: 0 20px;
-            text-decoration: none;
-            transition: 0.3s;
-            display: inline-block;
-        }
-
-        .social-links a:hover {
-            color: #00e5ff;
-            transform: translateY(-8px);
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            background: rgba(0,0,0,0.8);
-            margin-top: 50px;
-        }
-
-        h2 {
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            margin-bottom: 30px;
+        @media (max-width: 768px) {
+            .about-card, .track-grid, .contact-grid { grid-template-columns: 1fr; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-<header class="main-header">
-    <img src="asr-logo.JPG" alt="Asr Lofi World Logo" class="logo-main">
-    <h1>Asr Lofi World</h1>
-    <p><i>groove on screen — music video channel</i></p>
-</header>
-
-<div class="container">
-    
-    <section class="card-section">
-        <h2>Welcome to the Groove</h2>
-        <p>Experience high-quality music videos and immersive lofi beats. Designed for relaxation, focus, and visual storytelling.</p>
-        
-        <div class="schedule-box">
-            <h3>📅 Release Schedule</h3>
-            <p>New Music Videos every <strong>Monday</strong> and <strong>Friday</strong> at 6:00 PM!</p>
+    <nav>
+        <div class="nav-brand"><span class="logo-text">ASR LOFI WORLD 18</span></div>
+        <div class="nav-right">
+            <img src="asr-logo.JPG" alt="Logo" class="channel-logo-top">
         </div>
+    </nav>
 
-        <a href="https://youtube.com/@asrlofiworld2.0?si=lJdNBlqLTvV9wnkS" class="subscribe-btn" target="_blank">
+    <div class="container">
+        
+        <section id="about">
+            <h2>About Me</h2>
+            <div class="about-card">
+                <img src="ankitimg.jpeg" alt="Ankit Singh" class="profile-img">
+                <div class="about-text">
+                    <h3>Ankit Singh</h3>
+                    <p>Founder & Music Producer of <strong>ASR LOFI WORLD 18</strong>. I specialize in creating immersive <strong>Slowed + Reverb</strong> experiences and high-quality <strong>LoFi beats</strong>.</p>
+                </div>
+            </div>
+
+            <div class="subscribe-banner">
+                
+                <a href="https://youtube.com/@asrlofiworld2.0?si=lJdNBlqLTvV9wnkS" class="subscribe-btn" target="_blank">
             <strong>Subscribe To My Channel</strong>
-        </a>
-    </section>
+            </div>
+        </section>
 
-    <h2 style="text-align: center;">Featured Music Videos</h2>
-    
-    <div class="video-container">
-        <iframe 
-            src="https://www.youtube.com/embed/JvJfZHotkw4?rel=0&modestbranding=1" 
-            title="Asr Lofi World Video 1"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+        <section id="countdown">
+            <div class="countdown-banner">
+                <p id="release-title" style="letter-spacing: 6px; font-weight: bold; text-transform: uppercase;">RAJA RANGBAAZ PREMIERE</p>
+                <div id="timer" class="timer">00h 00m 00s</div>
+                <p id="release-subtext" style="font-size: 1.2rem;">Releasing Today at 7:00 PM</p>
+            </div>
+
+            <div class="track-grid">
+                <div class="track-card">
+                    <span style="color:var(--accent); font-weight: bold;">[ TODAY 7:00 PM ]</span>
+                    <h4 style="font-size: 1.5rem; margin: 15px 0;">Raja Rangbaz - Pawan Singh</h4>
+                    <p>Premiere starting soon.</p>
+                </div>
+                <div class="track-card">
+                    <span style="color:var(--secondary); font-weight: bold;">[ TOMORROW 7:00 PM ]</span>
+                    <h4 style="font-size: 1.5rem; margin: 15px 0;">Delhi NCR - Neelkamal</h4>
+                    <p>Monday Special Release.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="video">
+            <h2>Featured Release</h2>
+            <div class="video-wrapper">
+                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/JvJfZHotkw4"frameborder="0" allowfullscreen></iframe>
+             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
             referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen>
-        </iframe>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Get In Touch</h2>
+            <div class="contact-grid card about-card" style="align-items: flex-start;">
+                <div>
+                    <h3 style="color: var(--primary);">For Work & Promotion</h3>
+                    <p>Reach out for song promotions or business collaborations via email.</p>
+                    <p style="margin-top: 30px;"><strong>Email:</strong><br>ankit30082011@gmail.com</p>
+                    <div style="display:flex; gap:20px; font-size:2rem; margin-top:20px;">
+                        <a href="https://www.instagram.com/ankitsingh27.01.09" target="_blank" style="color:white;"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.facebook.com/share/1JwCbT45AK/" target="_blank" style="color:white;"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <form action="mailto:ankit30082011@gmail.com" method="post" enctype="text/plain">
+                    <input type="text" placeholder="Your Name" required>
+                    <textarea rows="4" placeholder="Your Message..." required></textarea>
+                    <button type="submit" class="btn">Send Email</button>
+                </form>
+            </div>
+        </section>
     </div>
 
-    <div class="video-container">
-        <iframe 
-            src="https://www.youtube.com/embed/ohbSFek6wO4?rel=0&modestbranding=1" 
-            title="Asr Lofi World Video 2"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            referrerpolicy="strict-origin-when-cross-origin" 
-            allowfullscreen>
-        </iframe>
+    <div class="float-wrap">
+        <a href="https://wa.me/917479511134" class="float-btn whatsapp" target="_blank">
+            <i class="fab fa-whatsapp" style="color: white; font-size: 30px;"></i>
+        </a>
     </div>
 
-</div>
+    <footer>
+        <div class="logo-text" style="font-size: 1.3rem; color: #fff;">ASR LOFI WORLD 18</div>
+        <div class="copyright-line">
+            &copy; 2025 ASR LOFI WORLD 18. All Rights Reserved. <br>
+            Designed & Produced by <strong>Ankit Singh</strong>
+        </div>
+    </footer>
 
-<footer>
-    <h3>Stay Connected</h3>
-    <div class="social-links">
-        <a href="https://www.instagram.com/ankitsingh27.01.09?igsh=MWJ0M2MzMW9lcnNjZg==" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="https://www.facebook.com/share/1JwCbT45AK/" target="_blank" title="Facebook"><i class="fab fa-facebook"></i></a>
-        <a href="https://youtube.com/@asrlofiworld2.0?si=lJdNBlqLTvV9wnkS" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
-    </div>
-    <p style="margin-top: 40px; opacity: 0.6; font-size: 0.9em;">&copy; 2025 Asr Lofi World. Since 2025.</p>
-</footer>
+    <script>
+        function updateTimer() {
+            const now = new Date();
+            let releaseDate = new Date();
+            releaseDate.setHours(19, 0, 0, 0);
 
+            if (now > releaseDate) {
+                releaseDate.setDate(releaseDate.getDate() + 1);
+                document.getElementById("release-title").innerText = "DELHI NCR PREMIERE";
+                document.getElementById("release-subtext").innerText = "Releasing Tomorrow at 7:00 PM";
+            }
+            const distance = releaseDate - now;
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            document.getElementById("timer").innerHTML = (hours < 10 ? "0" + hours : hours) + "h " + (minutes < 10 ? "0" + minutes : minutes) + "m " + (seconds < 10 ? "0" + seconds : seconds) + "s ";
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
 </body>
 </html>
+
